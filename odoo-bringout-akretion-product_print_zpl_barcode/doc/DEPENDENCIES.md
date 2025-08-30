@@ -2,6 +2,6 @@
 
 This addon depends on:
 
-- [product](../../../../../oca-ocb-sale/odoo-bringout-oca-ocb-product)
-- [barcodes](../../../../../oca-ocb-technical/odoo-bringout-oca-ocb-barcodes)
-- [stock](../../../../../oca-ocb-warehouse/odoo-bringout-oca-ocb-stock)
+- [product](https://github.com/bringout/oca-ocb-sale)
+- [barcodes](https://github.com/bringout/oca-ocb-technical)
+- [stock](https://github.com/bringout/oca-ocb-warehouse)
