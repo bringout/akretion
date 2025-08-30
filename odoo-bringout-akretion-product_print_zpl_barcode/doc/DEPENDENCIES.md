@@ -2,6 +2,6 @@
 
 This addon depends on:
 
-- [product](https://github.com/bringout/oca-ocb-sale/tree/d85ae419535f3bb204d666806d83849c7cf0b3b0/odoo-bringout-oca-ocb-product)
-- [barcodes](https://github.com/bringout/oca-ocb-technical/tree/2c245b96dde46fb2df4d0722eb8a461a8cca3bf9/odoo-bringout-oca-ocb-barcodes)
-- [stock](https://github.com/bringout/oca-ocb-warehouse/tree/62a8c36c9372364b7b073231c40d68a45f49dd78/odoo-bringout-oca-ocb-stock)
+- [product](https://github.com/bringout/oca-ocb-sale/tree/de00eb97dbc73b96112477e8671cd8ab774267d5/odoo-bringout-oca-ocb-product)
+- [barcodes](https://github.com/bringout/oca-ocb-technical/tree/8fcba78f213552797a003ba001cde6c4c59e6785/odoo-bringout-oca-ocb-barcodes)
+- [stock](https://github.com/bringout/oca-ocb-warehouse/tree/9b14fcb23c7ebeb2f1d8695642aaa941064d4d00/odoo-bringout-oca-ocb-stock)
