@@ -58,7 +58,7 @@ msgstr "Zatvori"
 #. module: product_print_zpl_barcode
 #: model:ir.model.fields,field_description:product_print_zpl_barcode.field_product_print_zpl_barcode__company_id
 msgid "Company"
-msgstr "Kompanija"
+msgstr "Preduzeće"
 
 #. module: product_print_zpl_barcode
 #: model:ir.model.fields,field_description:product_print_zpl_barcode.field_product_print_zpl_barcode__create_uid
@@ -122,17 +122,17 @@ msgstr "Label Size"
 #. module: product_print_zpl_barcode
 #: model:ir.model.fields,field_description:product_print_zpl_barcode.field_product_print_zpl_barcode____last_update
 msgid "Last Modified on"
-msgstr "Zadnja izmjena na"
+msgstr "Zadnje mijenjano"
 
 #. module: product_print_zpl_barcode
 #: model:ir.model.fields,field_description:product_print_zpl_barcode.field_product_print_zpl_barcode__write_uid
 msgid "Last Updated by"
-msgstr "Zadnje ažuriranje izvršio"
+msgstr "Zadnji ažurirao"
 
 #. module: product_print_zpl_barcode
 #: model:ir.model.fields,field_description:product_print_zpl_barcode.field_product_print_zpl_barcode__write_date
 msgid "Last Updated on"
-msgstr "Zadnje ažuriranje na"
+msgstr "Zadnje ažurirano"
 
 #. module: product_print_zpl_barcode
 #. odoo-python
@@ -233,7 +233,7 @@ msgstr "Štampa barkodova"
 #. module: product_print_zpl_barcode
 #: model:ir.model,name:product_print_zpl_barcode.model_product_template
 msgid "Product"
-msgstr "Proizvod"
+msgstr "Artikal"
 
 #. module: product_print_zpl_barcode
 #: model:ir.model.fields,field_description:product_print_zpl_barcode.field_product_print_zpl_barcode_line__product_name
