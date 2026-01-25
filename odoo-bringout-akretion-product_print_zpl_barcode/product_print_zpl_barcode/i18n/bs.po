@@ -150,7 +150,7 @@ msgstr ""
 #: code:addons/product_print_zpl_barcode/wizard/product_print_zpl_barcode.py
 #, python-format
 msgid "Line '%s': barcode type '%s' is not supported for the moment"
-msgstr "Štampanje barkoda"
+msgstr "Line '%s': barcode type '%s' is not supported for the moment"
 
 #. module: product_print_zpl_barcode
 #. odoo-python
