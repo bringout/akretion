@@ -58,7 +58,7 @@ msgstr "Zatvori"
 #. module: product_print_zpl_barcode
 #: model:ir.model.fields,field_description:product_print_zpl_barcode.field_product_print_zpl_barcode__company_id
 msgid "Company"
-msgstr "Preduzeće"
+msgstr "Kompanija"
 
 #. module: product_print_zpl_barcode
 #: model:ir.model.fields,field_description:product_print_zpl_barcode.field_product_print_zpl_barcode__create_uid
@@ -83,7 +83,7 @@ msgstr "Predefinirana mjerna jedinica za sve funkcije zalihe."
 #. module: product_print_zpl_barcode
 #: model:ir.model.fields,field_description:product_print_zpl_barcode.field_product_print_zpl_barcode__display_name
 msgid "Display Name"
-msgstr "Prikazani naziv"
+msgstr "Naziv za prikaz"
 
 #. module: product_print_zpl_barcode
 #: model:ir.model.fields,help:product_print_zpl_barcode.field_product_product__must_print_barcode
@@ -122,7 +122,7 @@ msgstr "Label Size"
 #. module: product_print_zpl_barcode
 #: model:ir.model.fields,field_description:product_print_zpl_barcode.field_product_print_zpl_barcode____last_update
 msgid "Last Modified on"
-msgstr "Zadnje mijenjano"
+msgstr "Zadnja izmjena"
 
 #. module: product_print_zpl_barcode
 #: model:ir.model.fields,field_description:product_print_zpl_barcode.field_product_print_zpl_barcode__write_uid
@@ -136,30 +136,27 @@ msgstr "Zadnje ažurirano"
 
 #. module: product_print_zpl_barcode
 #. odoo-python
-#: code:addons/product_print_zpl_barcode/wizard/product_print_zpl_barcode.py
+#: code:addons/product_print_zpl_barcode/wizard/product_print_zpl_barcode.py:0
 #, python-format
 msgid ""
 "Line '%s': barcode '%s' has %d digits. This wizard only supports EAN8 and "
 "EAN13 for the moment."
 msgstr ""
-"Line '%s': barcode '%s' has %d digits. This wizard only supports EAN8 and "
-"EAN13 for the moment."
 
 #. module: product_print_zpl_barcode
 #. odoo-python
-#: code:addons/product_print_zpl_barcode/wizard/product_print_zpl_barcode.py
+#: code:addons/product_print_zpl_barcode/wizard/product_print_zpl_barcode.py:0
 #, python-format
 msgid "Line '%s': barcode type '%s' is not supported for the moment"
-msgstr "Line '%s': barcode type '%s' is not supported for the moment"
+msgstr ""
 
 #. module: product_print_zpl_barcode
 #. odoo-python
-#: code:addons/product_print_zpl_barcode/wizard/product_print_zpl_barcode.py
+#: code:addons/product_print_zpl_barcode/wizard/product_print_zpl_barcode.py:0
 #, python-format
 msgid ""
 "Line '%s': the barcode '%s' is not a valid EAN barcode (wrong checksum)."
 msgstr ""
-"Line '%s': the barcode '%s' is not a valid EAN barcode (wrong checksum)."
 
 #. module: product_print_zpl_barcode
 #: model:ir.model,name:product_print_zpl_barcode.model_product_print_zpl_barcode_line
@@ -173,7 +170,7 @@ msgstr "Linije"
 
 #. module: product_print_zpl_barcode
 #. odoo-python
-#: code:addons/product_print_zpl_barcode/wizard/product_print_zpl_barcode.py
+#: code:addons/product_print_zpl_barcode/wizard/product_print_zpl_barcode.py:0
 #, python-format
 msgid "Missing Products"
 msgstr "Missing Proizvodi"
@@ -185,7 +182,7 @@ msgstr "Barkod se mora štampati"
 
 #. module: product_print_zpl_barcode
 #. odoo-python
-#: code:addons/product_print_zpl_barcode/wizard/product_print_zpl_barcode.py
+#: code:addons/product_print_zpl_barcode/wizard/product_print_zpl_barcode.py:0
 #, python-format
 msgid "On line '%s', the number of copies must be strictly positive."
 msgstr "On line '%s', the Broj of copies Mora be strictly positive."
@@ -198,7 +195,7 @@ msgstr "PNG Barcode Image"
 #. module: product_print_zpl_barcode
 #: model:ir.model.fields,field_description:product_print_zpl_barcode.field_product_print_zpl_barcode_line__parent_id
 msgid "Parent"
-msgstr "IP adresa ZPL štampača"
+msgstr "Nadređeno"
 
 #. module: product_print_zpl_barcode
 #: model:ir.model.fields,field_description:product_print_zpl_barcode.field_product_print_zpl_barcode_line__price
@@ -233,7 +230,7 @@ msgstr "Štampa barkodova"
 #. module: product_print_zpl_barcode
 #: model:ir.model,name:product_print_zpl_barcode.model_product_template
 msgid "Product"
-msgstr "Artikal"
+msgstr "Proizvod"
 
 #. module: product_print_zpl_barcode
 #: model:ir.model.fields,field_description:product_print_zpl_barcode.field_product_print_zpl_barcode_line__product_name
@@ -277,7 +274,7 @@ msgstr "Step2"
 
 #. module: product_print_zpl_barcode
 #. odoo-python
-#: code:addons/product_print_zpl_barcode/wizard/product_print_zpl_barcode.py
+#: code:addons/product_print_zpl_barcode/wizard/product_print_zpl_barcode.py:0
 #, python-format
 msgid ""
 "The barcode of the product (%s) has %d characters, which is smaller than the"
@@ -288,32 +285,30 @@ msgstr ""
 
 #. module: product_print_zpl_barcode
 #. odoo-python
-#: code:addons/product_print_zpl_barcode/wizard/product_print_zpl_barcode.py
+#: code:addons/product_print_zpl_barcode/wizard/product_print_zpl_barcode.py:0
 #, python-format
 msgid ""
 "The barcode rule '%s' has a pattern '%s' which doesn't contain a integer and"
 " decimal part between '{}'."
 msgstr ""
-"The barcode rule '%s' has a pattern '%s' which doesn't contain a integer and"
-" decimal part between '{}'."
 
 #. module: product_print_zpl_barcode
 #. odoo-python
-#: code:addons/product_print_zpl_barcode/models/product.py
+#: code:addons/product_print_zpl_barcode/models/product.py:0
 #, python-format
 msgid "The product '%s' already has a barcode."
 msgstr "The Proizvod '%s' already has a barcode."
 
 #. module: product_print_zpl_barcode
 #. odoo-python
-#: code:addons/product_print_zpl_barcode/wizard/product_print_zpl_barcode.py
+#: code:addons/product_print_zpl_barcode/wizard/product_print_zpl_barcode.py:0
 #, python-format
 msgid "The quantity (%s) must be positive !"
 msgstr "The Količina (%s) Mora be positive !"
 
 #. module: product_print_zpl_barcode
 #. odoo-python
-#: code:addons/product_print_zpl_barcode/models/product.py
+#: code:addons/product_print_zpl_barcode/models/product.py:0
 #, python-format
 msgid ""
 "The sequence 'private.product.barcode' is not properly configured. The "
@@ -326,7 +321,7 @@ msgstr ""
 
 #. module: product_print_zpl_barcode
 #. odoo-python
-#: code:addons/product_print_zpl_barcode/wizard/product_print_zpl_barcode.py
+#: code:addons/product_print_zpl_barcode/wizard/product_print_zpl_barcode.py:0
 #, python-format
 msgid ""
 "The value to encode in the barcode (%s) is superior to the maximum value "
@@ -337,7 +332,7 @@ msgstr ""
 
 #. module: product_print_zpl_barcode
 #. odoo-python
-#: code:addons/product_print_zpl_barcode/wizard/product_print_zpl_barcode.py
+#: code:addons/product_print_zpl_barcode/wizard/product_print_zpl_barcode.py:0
 #, python-format
 msgid "There are no pricelist in company '%s'."
 msgstr "There are no pricelist in Kompanija '%s'."
@@ -354,14 +349,14 @@ msgstr "JMJ"
 
 #. module: product_print_zpl_barcode
 #. odoo-python
-#: code:addons/product_print_zpl_barcode/wizard/product_print_zpl_barcode.py
+#: code:addons/product_print_zpl_barcode/wizard/product_print_zpl_barcode.py:1
 #, python-format
 msgid "Wrong active_model in context (%s)."
 msgstr "Wrong active_model in context (%s)."
 
 #. module: product_print_zpl_barcode
 #. odoo-python
-#: code:addons/product_print_zpl_barcode/models/product.py
+#: code:addons/product_print_zpl_barcode/models/product.py:0
 #, python-format
 msgid ""
 "You cannot call the method generate_barcode_from_product_template on product"
@@ -372,7 +367,7 @@ msgstr ""
 
 #. module: product_print_zpl_barcode
 #. odoo-python
-#: code:addons/product_print_zpl_barcode/wizard/product_print_zpl_barcode.py
+#: code:addons/product_print_zpl_barcode/wizard/product_print_zpl_barcode.py:0
 #, python-format
 msgid "You must select a ZPL Printer."
 msgstr "You Mora select a ZPL Printer."
@@ -390,4 +385,4 @@ msgstr "ZPL Filename"
 #. module: product_print_zpl_barcode
 #: model:ir.model.fields,field_description:product_print_zpl_barcode.field_product_print_zpl_barcode__zpl_printer_id
 msgid "ZPL Printer"
-msgstr "ZPL Printer"
+msgstr ""
