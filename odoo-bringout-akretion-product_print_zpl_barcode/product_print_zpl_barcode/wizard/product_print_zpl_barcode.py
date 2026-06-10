@@ -13,6 +13,8 @@ import ipaddress
 
 import logging
 logger = logging.getLogger(__name__)
+TIMEOUT = 5
+PRINTER_PORT = 9100
 
 
 class ProductPrintZplBarcode(models.TransientModel):
@@ -25,15 +27,15 @@ class ProductPrintZplBarcode(models.TransientModel):
         res = super().default_get(fields_list)
         nomenclature = self.env.ref('barcodes.default_barcode_nomenclature')
         company = self.env.company
-        #posconfig = self.env['pos.config'].sudo().search(
-        #    [('company_id', '=', company.id)], limit=1)
-        #if posconfig:
-        #    pricelist = posconfig.pricelist_id
-        #else:
-        pricelist = self.env['product.pricelist'].search([
-            '|', ('company_id', '=', False),
-            ('company_id', '=', company.id),
-            ], limit=1)
+        posconfig = self.env['pos.config'].sudo().search(
+            [('company_id', '=', company.id)], limit=1)
+        if posconfig:
+            pricelist = posconfig.pricelist_id
+        else:
+            pricelist = self.env['product.pricelist'].search([
+                '|', ('company_id', '=', False),
+                ('company_id', '=', company.id),
+                ], limit=1)
         if not pricelist:
             raise UserError(_(
                 "There are no pricelist in company '%s'.") % company.name)
@@ -84,7 +86,7 @@ class ProductPrintZplBarcode(models.TransientModel):
         if product.barcode:
             line_ids.append((0, 0, {
                 'barcode': product.barcode,
-                'product_name': product.display_name,
+                'product_name': product.name,
                 'product_id': product.id,
                 'copies': copies,
                 }))
@@ -120,11 +122,9 @@ class ProductPrintZplBarcode(models.TransientModel):
         """Called by button for the wizard, 1st step"""
         self.ensure_one()
         zpl_strings = []
-        print_price = False
         for line in self.line_ids:
             barcode = line.barcode
             product_name = line.product_name
-            
             assert barcode
             barcode_len = len(barcode)
             if barcode_len not in (8, 13):
@@ -143,7 +143,7 @@ class ProductPrintZplBarcode(models.TransientModel):
             if line.barcode_type in ('price', 'weight'):
                 barcode, zpl_str = line._prepare_price_weight_barcode_type()
             elif line.barcode_type == 'product':
-                barcode, zpl_str = line._prepare_product_barcode_type(print_price)
+                barcode, zpl_str = line._prepare_product_barcode_type()
             else:
                 raise UserError(_(
                     "Line '%s': barcode type '%s' is not supported for the moment")
@@ -186,10 +186,13 @@ class ProductPrintZplBarcode(models.TransientModel):
         else:  # IPv4
             socket_inet = socket.AF_INET
         with socket.socket(socket_inet, socket.SOCK_STREAM) as s:
+            s.settimeout(TIMEOUT)
             try:
-                s.connect((str(ip), 9100))
+                s.connect((str(ip), PRINTER_PORT))
             except Exception as e:
-                raise UserError(str(e))
+                raise UserError(_(
+                    "Cannot connect to ZPL printer on %(ip)s. Error: %(error)s",
+                    ip=ip, error=e))
             zpl_file_bytes = base64.decodebytes(self.zpl_file)
             s.send(zpl_file_bytes)
             s.close()
@@ -207,7 +210,7 @@ class ProductPrintZplBarcodeLine(models.TransientModel):
     # 1 line = a bit less than 30
     # I don't make product_name a stored computed field because I'm afraid
     # that we may not take the lang of the user
-    product_name = fields.Char('Product Label', required=True) #, size=56)
+    product_name = fields.Char('Product Label', required=True, size=56)
     rule_id = fields.Many2one(
         'barcode.rule', string='Barcode Rule', compute='_compute_rule_id')
     barcode_type = fields.Selection(related='rule_id.type', string="Barcode Type")
@@ -329,7 +332,7 @@ class ProductPrintZplBarcodeLine(models.TransientModel):
 ^CF0,30
 ^FO15,0^FB270,1,0,C^FD%(price).2f %(currency_symbol)s^FS
 ^CF0,20
-^FO15,30^FB290,4,0,C^FD%(product_name)s^FS
+^FO15,30^FB270,3,0,C^FD%(product_name)s^FS
 ^CF0,25
 ^FO15,75^FB270,1,0,C^FD%(quantity).3f %(uom_name)s    %(price_uom).2f %(currency_symbol)s/%(uom_name)s^FS
 ^FO60,110^%(ean_zpl_command)sN,50^FD%(ean_no_checksum)s^FS
@@ -339,33 +342,25 @@ class ProductPrintZplBarcodeLine(models.TransientModel):
         return label
 
     @api.model
-    def _product_barcode_type_zpl(self, print_price):
-        label_start = """
+    def _product_barcode_type_zpl(self):
+        label = """
 ^XA
 ^CI28
 ^PW304
 ^LL200
 ^LH0,20
 ^CF0,30
-"""
-        if print_price:
-            label_price = """
 ^FO15,0^FB270,1,0,C^FD%(price_uom).2f %(currency_symbol)s^FS
-"""
-        else:
-            label_price = ""
-
-        label_end = """
 ^CF0,20
-^FO15,30^FB290,4,0,C^FD%(product_name)s^FS
-^FO60,110^%(ean_zpl_command)sN,60^FD%(ean_no_checksum)s^FS
+^FO15,30^FB270,3,0,C^FD%(product_name)s^FS
+^FO60,100^%(ean_zpl_command)sN,60^FD%(ean_no_checksum)s^FS
 ^PQ%(copies)s
 ^XZ
 """
-        return label_start + label_price + label_end
+        return label
 
-    def _prepare_product_barcode_type(self, print_price):
-        zpl_str = self._product_barcode_type_zpl(print_price) % {
+    def _prepare_product_barcode_type(self):
+        zpl_str = self._product_barcode_type_zpl() % {
             'product_name': self.product_name,
             'ean_zpl_command': len(self.barcode) == 8 and 'B8' or 'BE',
             'ean_no_checksum': self.barcode[:-1],
